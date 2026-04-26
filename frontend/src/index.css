@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: 'Spectral', Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #FAF3E7;
+    color: #2A1810;
+}
+
+@layer base {
+    :root {
+        /* Warm cream background */
+        --background: 36 60% 95%;
+        --foreground: 18 50% 12%;
+        --card: 36 50% 97%;
+        --card-foreground: 18 50% 12%;
+        --popover: 36 60% 97%;
+        --popover-foreground: 18 50% 12%;
+        /* Burnt orange primary */
+        --primary: 14 70% 45%;
+        --primary-foreground: 36 60% 97%;
+        /* Warm cream secondary */
+        --secondary: 36 40% 90%;
+        --secondary-foreground: 18 50% 18%;
+        --muted: 36 30% 88%;
+        --muted-foreground: 22 25% 35%;
+        /* Gold accent */
+        --accent: 40 65% 55%;
+        --accent-foreground: 18 50% 12%;
+        --destructive: 0 70% 45%;
+        --destructive-foreground: 36 60% 97%;
+        --border: 30 30% 82%;
+        --input: 30 30% 82%;
+        --ring: 14 70% 45%;
+        --radius: 0.5rem;
+
+        /* Custom Cafe Leo palette */
+        --leo-cream: #FAF3E7;
+        --leo-cream-deep: #F2E6D0;
+        --leo-orange: #C75024;
+        --leo-orange-deep: #A8401C;
+        --leo-gold: #D4A437;
+        --leo-gold-soft: #E5C66B;
+        --leo-brown: #2A1810;
+        --leo-brown-soft: #4A2E20;
+        --leo-rose: #B85450;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+        background: #FAF3E7;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', Georgia, serif;
+        letter-spacing: -0.01em;
+    }
+
+    .font-display {
+        font-family: 'Playfair Display', Georgia, serif;
+    }
+    .font-body {
+        font-family: 'Spectral', Georgia, serif;
+    }
+    .font-script {
+        font-family: 'Caveat', cursive;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #C75024;
+        color: #FAF3E7;
+    }
+}
+
+/* Grain overlay */
+.grain {
+    position: relative;
+}
+.grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Hand-drawn underline */
+.handline {
+    position: relative;
+    display: inline-block;
+}
+.handline::after {
+    content: "";
+    position: absolute;
+    left: -4%;
+    right: -4%;
+    bottom: -8px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 10' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath d='M2 6 Q50 1 100 5 T198 4' stroke='%23D4A437' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+/* Reveal animation */
+@keyframes leoFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.reveal {
+    opacity: 0;
+}
+.reveal.in-view {
+    animation: leoFadeUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Steam animation */
+@keyframes steamRise {
+    0% {
+        opacity: 0;
+        transform: translateY(0) scale(1);
+    }
+    20% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(1.4);
+    }
+}
+.steam-puff {
+    animation: steamRise 3s ease-out infinite;
+}
+
+/* Marquee */
+@keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee-track {
+    animation: marqueeScroll 30s linear infinite;
+}
+
+/* Custom hover on image cards */
+.tilt-card {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+}
+.tilt-card:hover {
+    transform: translateY(-6px) rotate(-0.5deg);
+}
+
+/* Pill button glow */
+.btn-glow {
+    box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset, 0 8px 24px -8px rgba(199, 80, 36, 0.45);
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.btn-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 14px 30px -8px rgba(199, 80, 36, 0.6);
+}
+
+/* Custom scroll on menu tabs */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}
