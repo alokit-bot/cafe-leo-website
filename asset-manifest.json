@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/cafe-leo-website/static/css/main.193b8a2f.css",
+    "main.js": "/cafe-leo-website/static/js/main.8744f120.js",
+    "index.html": "/cafe-leo-website/index.html",
+    "main.193b8a2f.css.map": "/cafe-leo-website/static/css/main.193b8a2f.css.map",
+    "main.8744f120.js.map": "/cafe-leo-website/static/js/main.8744f120.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.193b8a2f.css",
+    "static/js/main.8744f120.js"
+  ]
+}
